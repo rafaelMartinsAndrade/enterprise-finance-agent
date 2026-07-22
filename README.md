@@ -1,4 +1,4 @@
-# T57 Enterprise Finance Agent
+# Enterprise Finance Agent
 
 Enterprise finance workflow agent for invoice intake. FastAPI backend, LangGraph state orchestration, validated tools, draft-only automation, human approval, durable checkpoints, Streamlit review UI.
 
@@ -6,11 +6,11 @@ Enterprise finance workflow agent for invoice intake. FastAPI backend, LangGraph
 
 Steps covered in this repo:
 
-- `T57` to `T58`: business process and autonomy boundaries
-- `T59` to `T60`: agent state model plus LangGraph workflow
-- `T61` to `T64`: supplier lookup, duplicate detection, categorization, draft pre-entry tools
-- `T65` to `T75`: structured outputs, argument validation, confidence, conditionals, approval, persistence, resume, retries, idempotency, audit, step limit
-- `T76` to `T81`: tests, approval UI, demo scenarios, diagram, video script, publish pack
+- business process and autonomy boundaries
+- agent state model plus LangGraph workflow
+- supplier lookup, duplicate detection, categorization, draft pre-entry tools
+- structured outputs, argument validation, confidence, conditionals, approval, persistence, resume, retries, idempotency, audit, step limit
+- tests, approval UI, demo scenarios, diagram, video script, publish pack
 
 ## Business Problem
 
