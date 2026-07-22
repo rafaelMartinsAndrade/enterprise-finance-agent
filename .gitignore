@@ -8,5 +8,6 @@ __pycache__/
 .mypy_cache/
 *.egg-info/
 rag_platform.db
+finance_agent.db
 data/
 tmp_debug/
