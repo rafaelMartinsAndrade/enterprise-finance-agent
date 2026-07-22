@@ -1,0 +1,64 @@
+services:
+  api:
+    build: .
+    command: >
+      sh -c "alembic upgrade head &&
+      uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env}
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/finance_agent
+      STORAGE_ROOT: /app/data/storage
+      STREAMLIT_API_BASE_URL: http://api:8000/api/v1
+      AGENT_CHECKPOINT_PATH: /app/data/langgraph/agent_checkpoints.db
+    ports:
+      - "8000:8000"
+    volumes:
+      - app_data:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health').read()"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  ui:
+    build: .
+    command: streamlit run streamlit_app.py --server.address 0.0.0.0 --server.port 8501
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env}
+    environment:
+      STREAMLIT_API_BASE_URL: http://api:8000/api/v1
+      API_TOKEN: change-me
+      AGENT_CHECKPOINT_PATH: /app/data/langgraph/agent_checkpoints.db
+    ports:
+      - "8501:8501"
+    volumes:
+      - app_data:/app/data
+    depends_on:
+      api:
+        condition: service_healthy
+
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: finance_agent
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d finance_agent"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres_data:
+  app_data:

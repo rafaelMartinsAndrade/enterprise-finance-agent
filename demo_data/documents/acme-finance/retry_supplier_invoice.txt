@@ -1,0 +1,8 @@
+Supplier: Retry-Me Telecom
+Tax ID: 77.777.777/0001-77
+Invoice: RETRY-001
+Issue Date: 2026-07-11
+Due Date: 2026-07-25
+Amount: 210.00
+
+Internet backup line for branch office.

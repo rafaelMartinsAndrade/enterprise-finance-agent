@@ -1,0 +1,5 @@
+Support Playbook
+
+Critical support tickets must receive a first response within 15 minutes.
+Severity two incidents require an owner update every 60 minutes.
+Customer-facing postmortems must be published within 48 hours.

@@ -1,0 +1,8 @@
+Supplier: AWS Brasil Cloud
+Tax ID: 12.345.678/0001-01
+Invoice: AWS-2026-0715
+Issue Date: 2026-07-10
+Due Date: 2026-07-20
+Amount: 1530.45
+
+Monthly hosting and compute services for ERP environments.
